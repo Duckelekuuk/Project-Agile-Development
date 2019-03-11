@@ -17,10 +17,10 @@ $(document).ready(function () {
 
     $(".animated-text").typed({
         strings: [
-            "fully responsive",
-            "onepage template",
-            "mobile first",
-            "startup template"
+            "test1",
+            "test2",
+            "test3",
+            "test4"
         ],
         typeSpeed: 40,
         loop: true,
