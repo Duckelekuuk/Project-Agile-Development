@@ -19,9 +19,9 @@ $(document).ready(function () {
         strings: [
             "milieuvriendelijk",
             "zeker van een parkeerplek",
-            "Kai",
-            "Eric",
-            "Mohammed"
+            "dicht bij mijn bestemming geparkeerd",
+            "geen rondjes meer aan het rijden",
+            "slim"
         ],
         typeSpeed: 40,
         loop: true,
