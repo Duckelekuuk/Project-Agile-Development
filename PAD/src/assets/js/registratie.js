@@ -16,6 +16,9 @@ $(document).ready(function () {
                 alert("Goodjob je kan niks");
             } else {
                 //indexof gebruiken voor locatie van @ en . bij toekomstige check
+                // Let niet op mijn geweldige debug messages btw
+                var indexAt = enteredEmail.indexOf('@');
+                var indexPunt = enteredEmail.indexOf('.');
                 alert("Goodjob bro")
             }
         }
