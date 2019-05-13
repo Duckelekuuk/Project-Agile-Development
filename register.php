@@ -4,6 +4,12 @@ $username = "root";
 $password = "usbw";
 $dbname = "mol";
 
+
+if(!isset($_POST['registerFullname']) || !isset($_POST['registerEmail']) || !isset($_POST['registerUsername']) || !isset($_POST['registerNumberplate']) || !isset($_POST['registerPassword'])){
+	die("Incomplete parameters.");
+}
+
+
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
