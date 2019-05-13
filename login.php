@@ -33,11 +33,11 @@ $passwordHash = hash('sha256', $passwordWithSalt);
 
 
 $stmt = $conn->prepare("SELECT COUNT(*) FROM klant WHERE Gebruikersnaam = ? AND Wachtwoord = ?");
-$stmt->bind_param("ss", $_POST['username'], $passwordWithSalt);
+$stmt->bind_param("ss", $_POST['username'], $passwordHash);
 $stmt->execute();
 
 $result = $stmt->get_result();
-$match = $result->fetch_row()[0];
+$match = $result->fetch_row();
 $stmt->close();
 
 if(!$match) {
@@ -45,6 +45,7 @@ if(!$match) {
     die("Invalid credentials.");
 }
 
+echo 'Login success.';
 
 $conn->close();
 ?>

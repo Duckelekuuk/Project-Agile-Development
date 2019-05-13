@@ -84,4 +84,7 @@ $stmt = $conn->prepare("INSERT INTO klant (Kenteken, Naam, Gebruikersnaam, Wacht
 $stmt->bind_param("ssssss", $kenteken, $_POST['registerFullname'], $_POST['registerUsername'], $passwordHash, $passwordSalt, $_POST['registerEmail']);
 $stmt->execute();
 $stmt->close();
+
+
+echo 'register success.';
 ?>
