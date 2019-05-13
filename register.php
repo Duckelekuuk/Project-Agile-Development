@@ -17,16 +17,47 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT * FROM `parkeerplaats`";
-$result = $conn->query($sql);
+$stmt = $conn->prepare("SELECT COUNT(*) FROM klant WHERE Emailadres = ?");
+$stmt->bind_param("s", $_POST['registerEmail']);
+$stmt->execute();
 
-if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-        echo $row["Idparkeerplaats"]. "<br>";
-    }
-} else {
-    echo "0 results";
+$result = $stmt->get_result();
+$match = $result->fetch_row()[0];
+$stmt->close();
+
+if ($match){
+	die("Email already registered.");
 }
-$conn->close();
+
+$stmt = $conn->prepare("SELECT COUNT(*) FROM klant WHERE Kenteken = ?");
+$stmt->bind_param("s", $_POST['registerNumberplate']);
+$stmt->execute();
+
+$result = $stmt->get_result();
+$match = $result->fetch_row()[0];
+$stmt->close();
+
+if ($match){
+	die("Numberplate already registered.");
+}
+
+$stmt = $conn->prepare("SELECT COUNT(*) FROM klant WHERE Gebruikersnaam = ?");
+$stmt->bind_param("s", $_POST['registerUsername']);
+$stmt->execute();
+
+$result = $stmt->get_result();
+$match = $result->fetch_row()[0];
+$stmt->close();
+
+if ($match){
+	die("Username already registered.");
+}
+
+if(strlen($_POST['registerPassword']) < 8){
+	die("Password too short.");
+}
+
+//email check
+
+//insert data
 ?>
