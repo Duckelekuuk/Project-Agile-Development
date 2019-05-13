@@ -6,12 +6,14 @@ $dbname = "mol";
 
 
 if(!isset($_POST['registerFullname']) || !isset($_POST['registerEmail']) || !isset($_POST['registerUsername']) || !isset($_POST['registerNumberplate']) || !isset($_POST['registerPassword'])){
+	$conn->close();
 	die("Incomplete parameters.");
 }
 
 $kenteken = $_POST['registerNumberplate'];
 $kenteken = strtoupper(str_replace('-', '', $kenteken));
 if(strlen($kenteken) != 6){
+	$conn->close();
 	die("Invalid Numberplate.");
 }
 
@@ -19,10 +21,12 @@ if(strlen($kenteken) != 6){
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
 if ($conn->connect_error) {
+	$conn->close();
     die("Connection failed: " . $conn->connect_error);
 }
 
 if(!preg_match('/^(?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)|(?:\x22?[^\x5C\x22]\x22?)){255,})(?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)|(?:\x22?[^\x5C\x22]\x22?)){65,}@)(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22))(?:\.(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22)))*@(?:(?:(?!.*[^.]{64,})(?:(?:(?:xn--)?[a-z0-9]+(?:-[a-z0-9]+)*\.){1,126}){1,}(?:(?:[a-z][a-z0-9]*)|(?:(?:xn--)[a-z0-9]+))(?:-[a-z0-9]+)*)|(?:\[(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){7})|(?:(?!(?:.*[a-f0-9][:\]]){7,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?)))|(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){5}:)|(?:(?!(?:.*[a-f0-9]:){5,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3}:)?)))?(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))(?:\.(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))){3}))\]))$/iD', $_POST['registerEmail'])){
+	$conn->close();
 	die("Invalid email.");
 }
 
@@ -36,6 +40,7 @@ $match = $result->fetch_row()[0];
 $stmt->close();
 
 if ($match){
+	$conn->close();
 	die("Email already registered.");
 }
 
@@ -48,6 +53,7 @@ $match = $result->fetch_row()[0];
 $stmt->close();
 
 if ($match){
+	$conn->close();
 	die("Numberplate already registered.");
 }
 
@@ -60,10 +66,12 @@ $match = $result->fetch_row()[0];
 $stmt->close();
 
 if ($match){
+	$conn->close();
 	die("Username already registered.");
 }
 
 if(strlen($_POST['registerPassword']) < 8){
+	$conn->close();
 	die("Password too short.");
 }
 
