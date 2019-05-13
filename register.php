@@ -9,7 +9,8 @@ if(!isset($_POST['registerFullname']) || !isset($_POST['registerEmail']) || !iss
 	die("Incomplete parameters.");
 }
 
-$kenteken = $_POST('registerNumberplate').replace('-', '').toUpperCase();
+$kenteken = $_POST['registerNumberplate'];
+$kenteken = strtoupper(str_replace('-', '', $kenteken));
 if(strlen($kenteken) != 6){
 	die("Invalid Numberplate.");
 }
@@ -66,7 +67,13 @@ if(strlen($_POST['registerPassword']) < 8){
 	die("Password too short.");
 }
 
+//generate salt
+$passwordSalt = openssl_random_pseudo_bytes(32);
+$passwordWithSalt = $passwordSalt . $_POST['registerPassword'];
+$passwordHash = hash('sha256', $passwordWithSalt);
 
-
-//insert data
+$stmt = $conn->prepare("INSERT INTO klant (Kenteken, Naam, Gebruikersnaam, Wachtwoord, Salt, Emailadres) VALUES (?, ?, ?, ?, ?, ?)");
+$stmt->bind_param("ssssss", $kenteken, $_POST['registerFullname'], $_POST['registerUsername'], $passwordHash, $passwordSalt, $_POST['registerEmail']);
+$stmt->execute();
+$stmt->close();
 ?>
