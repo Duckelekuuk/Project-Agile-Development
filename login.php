@@ -1,4 +1,5 @@
 <?php
+session_start();
 $servername = "localhost:3307";
 $username = "root";
 $password = "usbw";
@@ -46,6 +47,13 @@ if(!$match) {
 }
 
 echo 'Login success.';
+
+$filledInUsername = $_POST['username'];
+$_SESSION["username"] = $filledInUsername;
+
+echo "Session username is " . $_SESSION["username"];
+
+header('location:src/afterlogin.php');
 
 $conn->close();
 ?>
