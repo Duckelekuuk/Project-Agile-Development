@@ -5,9 +5,13 @@ $password = "usbw";
 $dbname = "mol";
 
 
-if(!isset($_POST['registerFullname']) || !isset($_POST['registerEmail']) || !isset($_POST['registerUsername']) || !isset($_POST['registerNumberplate']) || !isset($_POST['registerPassword'])){
+if(!isset($_POST['registerFullname']) || !isset($_POST['registerEmail']) || !isset($_POST['registerUsername']) || !isset($_POST['registerNumberplate']) || !isset($_POST['registerPassword']) || !isset($_POST['csrf'])){
 	$conn->close();
 	die("Incomplete parameters.");
+}
+
+if($_POST['csrf'] != $_SESSION['csrf']){
+	die("Invalid CSRF token.");
 }
 
 $kenteken = $_POST['registerNumberplate'];

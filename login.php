@@ -5,8 +5,11 @@ $username = "root";
 $password = "usbw";
 $dbname = "mol";
 
-if(!isset($_POST['username']) || !isset($_POST['password'])) {
+if(!isset($_POST['username']) || !isset($_POST['password']) || !isset($_POST['csrf'])) {
     die("Incomplete parameters");
+}
+if($_POST['csrf'] != $_SESSION['csrf']){
+	die("Invalid CSRF token.");
 }
 
 // Create connection

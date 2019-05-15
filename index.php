@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (empty($_SESSION['csrf'])) {
+	$_SESSION['csrf'] = bin2hex(openssl_random_pseudo_bytes(32));
+}
 if(!empty($_SESSION["username"])) {
     header('location:src/afterlogin.php');
 }
@@ -226,6 +229,7 @@ if(!empty($_SESSION["username"])) {
                         <div class="form-group">
 
                             <input name="registerPassword" type="password" class="form-control" placeholder="Password" required="required" minlength="8">
+                            <input type="hidden" name="csrf" value=<?php echo '"'. $_SESSION['csrf'] . '"';?>>
 
                         </div>
 
@@ -530,6 +534,7 @@ if(!empty($_SESSION["username"])) {
                         <div class="form-group">
 
                             <input name="password" type="password" class="form-control" placeholder="Password" required="required">
+                            <input type="hidden" name="csrf" value=<?php echo '"'. $_SESSION['csrf'] . '"';?>>
 
                         </div>
 

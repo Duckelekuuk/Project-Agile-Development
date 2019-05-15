@@ -37,6 +37,7 @@ echo "Session username is " . $_SESSION["username"];
 
 <form method="post">
     <input type="submit" name="logout" id="logout" value="logout">
+    <input type="hidden" name="csrf" value=<?php echo '"'. $_SESSION['csrf'] . '"';?>>
 </form>
 
 <?php
@@ -46,7 +47,10 @@ function logout() {
     header('location:../index.php');
 }
 
-if(array_key_exists('logout',$_POST)) {
+if(isset($_POST['logout']) && isset($_POST['csrf'])) {
+	if($_POST['csrf'] != $_SESSION['csrf']){
+		die("Invalid CSRF token.");
+	}
     logout();
 }
 
