@@ -38,7 +38,7 @@ $stmt->bind_param("ss", $_POST['username'], $passwordHash);
 $stmt->execute();
 
 $result = $stmt->get_result();
-$match = $result->fetch_row();
+$match = $result->fetch_row()[0];
 $stmt->close();
 
 if(!$match) {
