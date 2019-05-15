@@ -5,6 +5,7 @@ if (empty($_SESSION['csrf'])) {
 }
 if(!empty($_SESSION["username"])) {
     header('location:src/afterlogin.php');
+    die();
 }
 ?>
 
