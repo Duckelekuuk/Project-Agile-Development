@@ -23,6 +23,7 @@ $stmt->close();
 
 if(!$match) {
     header('location:../index.php');
+    die();
 }
 
 $conn->close();
