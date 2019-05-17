@@ -5,8 +5,11 @@ $username = "root";
 $password = "usbw";
 $dbname = "mol";
 
-if(!isset($_POST['username']) || !isset($_POST['password'])) {
+if(!isset($_POST['username']) || !isset($_POST['password']) || !isset($_POST['csrf'])) {
     die("Incomplete parameters");
+}
+if($_POST['csrf'] != $_SESSION['csrf']){
+	die("Invalid CSRF token.");
 }
 
 // Create connection
@@ -38,7 +41,7 @@ $stmt->bind_param("ss", $_POST['username'], $passwordHash);
 $stmt->execute();
 
 $result = $stmt->get_result();
-$match = $result->fetch_row();
+$match = $result->fetch_row()[0];
 $stmt->close();
 
 if(!$match) {
