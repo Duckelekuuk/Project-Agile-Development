@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -180,36 +181,41 @@
                 </a>
 
                 <div class="centered" id="centered" style="align-content: center">
-                    <h2 class="text-center">Kies een datum en tijd</h2>
-                    <hr>
-                    <div class='col-md-5'>
-                        <h2>van:</h2>
-                        <div class="form-group">
-                            <div class='input-group date' id='datetimepicker6'>
-                                <input type='text' class="form-control" />
-                                <span class="input-group-addon">
+                    <form class="datum-tijd" action="/Reserveren.php" method="POST">
+                        <h2 class="text-center">Kies een datum en tijd</h2>
+                        <hr>
+                        <div class='col-md-5'>
+                            <h2>van:</h2>
+                            <div class="form-group">
+                                <div class='input-group date' id='datetimepicker6'>
+                                    <input type='text' class="form-control" />
+                                    <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class='col-md-5'>
-                        <h2>tot:</h2>
-                        <div class="form-group">
-                            <div class='input-group date' id='datetimepicker7'>
-                                <input type='text' class="form-control" />
-                                <span class="input-group-addon">
+                        <div class='col-md-5'>
+                            <h2>tot:</h2>
+                            <div class="form-group">
+                                <div class='input-group date' id='datetimepicker7'>
+                                    <input type='text' class="form-control" />
+                                    <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <input type="submit" name="myButton" class="btn btn-blue" value="Reserveer!">
+                        <input type="submit" name="myButton" class="btn btn-blue" value="Reserveer!">
+                    </form>
                 </div>
                 <script type="text/javascript">
                     $(function () {
-                        $('#datetimepicker6').datetimepicker();
+                        $('#datetimepicker6').datetimepicker({
+                            stepping: 60
+                        });
                         $('#datetimepicker7').datetimepicker({
+                            stepping: 60,
                             useCurrent: false //Important! See issue #1075
                         });
                         $("#datetimepicker6").on("dp.change", function (e) {
@@ -220,70 +226,68 @@
                         });
                     });
                 </script>
-
             </div>
         </div>
+
     </div>
 
 </section>
 
-    <!--========================================
+<!--========================================
 
-           About Us
+       About Us
 
-    ========================================-->
+========================================-->
 
 
 
-    <section id="about" class="section-padding">
+<section id="about" class="section-padding">
 
-        <div class="container">
+    <div class="container">
 
-            <h2>Over ons</h2>
+        <h2>Over ons</h2>
 
-            <p>Wij zijn een fris bedrijf wat belang heeft voor een makkelijke toekomst.</p>
+        <p>Wij zijn een fris bedrijf wat belang heeft voor een makkelijke toekomst.</p>
 
-            <div class="row">
+        <div class="row">
 
-                <div class="col-md-4">
+            <div class="col-md-4">
 
-                    <div class="icon-box">
+                <div class="icon-box">
 
-                        <i class="material-icons">favorite</i>
+                    <i class="material-icons">favorite</i>
 
-                        <h4>Simple To Use</h4>
+                    <h4>Simple To Use</h4>
 
-                        <p>Altijd een parkeerplek zolang je maar op tijd reserveert. Verder hoef je nergens over na te denken.</p>
-
-                    </div>
+                    <p>Altijd een parkeerplek zolang je maar op tijd reserveert. Verder hoef je nergens over na te denken.</p>
 
                 </div>
 
-                <div class="col-md-4">
+            </div>
 
-                    <div class="icon-box">
+            <div class="col-md-4">
 
-                        <i class="material-icons">flash_on</i>
+                <div class="icon-box">
 
-                        <h4>Powerful</h4>
+                    <i class="material-icons">flash_on</i>
 
-                        <p>Simpel in gebruik! Maak een account en reserveren maar!</p>
+                    <h4>Powerful</h4>
 
-                    </div>
+                    <p>Simpel in gebruik! Maak een account en reserveren maar!</p>
 
                 </div>
 
-                <div class="col-md-4">
+            </div>
 
-                    <div class="icon-box">
+            <div class="col-md-4">
 
-                        <i class="material-icons">settings</i>
+                <div class="icon-box">
 
-                        <h4>Easy To Customize</h4>
+                    <i class="material-icons">settings</i>
 
-                        <p>Deze app is toegankelijk voor iedereen! Zo hoef je je geen zorgen meer te maken om die ene oplaadpaal bij je werk, als je hem hebt gereserveerd is hij voor jou.</p>
+                    <h4>Easy To Customize</h4>
 
-                    </div>
+                    <p>Deze app is toegankelijk voor iedereen! Zo hoef je je geen zorgen meer te maken om die ene oplaadpaal bij je werk, als je hem hebt gereserveerd is hij voor jou.</p>
 
                 </div>
 
@@ -291,7 +295,9 @@
 
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 <!--========================================
 
@@ -471,7 +477,7 @@
 
 
 
-    <script src="../assets/bootstrap-3.3.7/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="../assets/bootstrap-3.3.7/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 
 <script src="../assets/js/plugins/owl-carousel/owl.carousel.min.js"></script>
 
