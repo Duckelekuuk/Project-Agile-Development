@@ -1,17 +1,22 @@
 <?php
+session_start();
 $servername = "localhost:3307";
 $username = "root";
 $password = "usbw";
 $dbname = "mol";
 
 
-if(!isset($_POST['registerFullname']) || !isset($_POST['registerEmail']) || !isset($_POST['registerUsername']) || !isset($_POST['registerNumberplate']) || !isset($_POST['registerPassword']) || !isset($_POST['csrf'])){
+if(!isset($_POST['registerFullname']) || !isset($_POST['registerEmail']) || !isset($_POST['registerUsername']) || !isset($_POST['registerNumberplate']) || !isset($_POST['registerPassword']) || !isset($_POST['registerPassword2']) || !isset($_POST['csrf'])){
 	$conn->close();
 	die("Incomplete parameters.");
 }
 
 if($_POST['csrf'] != $_SESSION['csrf']){
 	die("Invalid CSRF token.");
+}
+
+if($_POST['registerPassword'] != $_POST['registerPassword2']){
+	die("Passwords do not match.")
 }
 
 $kenteken = $_POST['registerNumberplate'];

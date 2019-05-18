@@ -230,6 +230,12 @@ if(!empty($_SESSION["username"])) {
                         <div class="form-group">
 
                             <input name="registerPassword" type="password" class="form-control" placeholder="Password" required="required" minlength="8">
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <input name="registerPassword2" type="password" class="form-control" placeholder="Password" required="required" minlength="8">
                             <input type="hidden" name="csrf" value=<?php echo '"'. $_SESSION['csrf'] . '"';?>>
 
                         </div>
