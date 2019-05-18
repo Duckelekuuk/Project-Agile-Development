@@ -1,3 +1,16 @@
+<?php
+//start a session
+session_start();
+
+//create a key for hash_hmac function
+if (empty($_SESSION['key']))
+    $_SESSION['key'] = bin2hex(openssl_random_pseudo_bytes(32));
+
+//create CSRF token
+$csrf = hash_hmac('sha256', 'Reservering.php', $_SESSION['key']);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -187,7 +200,7 @@
                             <h2>van:</h2>
                             <div class="form-group">
                                 <div class='input-group date' id='datetimepicker6'>
-                                    <input name="Van" type='text' class="form-control" />
+                                    <input name="Van" type='text' class="form-control" placeholder="Van" />
                                     <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
@@ -198,24 +211,25 @@
                             <h2>tot:</h2>
                             <div class="form-group">
                                 <div class='input-group date' id='datetimepicker7'>
-                                    <input name="Tot" type='text' class="form-control" />
+                                    <input name="Tot" type='text' class="form-control" placeholder="Tot"/>
                                     <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
                                 </div>
                             </div>
                         </div>
-                        <input type="submit" name="myButton" class="btn btn-blue" value="Reserveer!">
+                        <input type="submit" name="submit" class="btn btn-blue" value="Reserveer!">
+                        <input type="hidden" name="csrf" value="<?php echo $csrf ?>">
                     </form>
                 </div>
                 <script type="text/javascript">
                     $(function () {
                         $('#datetimepicker6').datetimepicker({
-                            format: 'DD/MM/YYYY HH:mm',
+                            format: 'DD-MM-YYYY HH:mm',
                             stepping: 60
                         });
                         $('#datetimepicker7').datetimepicker({
-                            format: 'DD/MM/YYYY HH:mm',
+                            format: 'DD-MM-YYYY HH:mm',
                             stepping: 60,
                             useCurrent: false
                         });

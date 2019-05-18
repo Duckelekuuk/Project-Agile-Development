@@ -1,17 +1,20 @@
 <?php
-$status = '';
+echo $_POST['csrf'],"\r\n";
+echo $_POST['Van'],"\r\n ";
+echo $_POST['Tot'];
+
 $servername = "localhost:3307";
 $username = "root";
 $password = "usbw";
 $dbname = "mol";
 
 
-if(isset($_POST['submit']) && !empty($_POST['datetimepicker6']) && !empty($_POST['datetimepicker7']) && !isset($_POST['csrf'])){
+if(isset($_POST['submit']) && !empty($_POST['Van']) && !empty($_POST['Tot']) && !isset($_POST['csrf'])) {
 
-
-if($_POST['csrf'] != $_SESSION['csrf']){
-    die("Invalid CSRF token.");
-}
+//validate token
+    if($_POST['csrf'] != $_SESSION['csrf']) {
+        die("Invalid CSRF token.");
+    }
 
 // Create connection
     $db = new mysqli($servername, $username, $password, $dbname);
@@ -23,17 +26,18 @@ if($_POST['csrf'] != $_SESSION['csrf']){
 
 
 // Get fields value
-    $datetimepicker6 = $db->real_escape_string($_POST['datetimepicker6']);
-    $datetimepicker7 = $db->real_escape_string($_POST['datetimepicker7']);
+    $Van = $db->real_escape_string($_POST['Van']);
+    $Tot = $db->real_escape_string($_POST['Tot']);
 
     // Insert datetime into the database
-    $insert = $db->query("INSERT INTO reserveringen (Van, Tot) VALUES ('".$datetimepicker6."', '".$datetimepicker7."')");
+    $insert = $db->query("INSERT INTO reserveringen (Van, Tot) VALUES ('" . $Van . "', '" . $Tot . "')");
 
     // If insert successful
-    if($insert){
-        $status = 'Event data inserted successfully. Event ID: '.$db->insert_id;
-    }else{
+    if ($insert) {
+        $status = 'Event data inserted successfully. Event ID: ' . $db->insert_id;
+
+    } else {
         $status = 'Failed to insert event data.';
 
-}
+    }
 }
