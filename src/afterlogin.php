@@ -6,27 +6,10 @@ $username = "root";
 $password = "usbw";
 $dbname = "mol";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-$stmt = $conn->prepare("SELECT Gebruikersnaam FROM klant WHERE Gebruikersnaam = ?");
-$stmt->bind_param("s", $_SESSION["username"]);
-$stmt->execute();
-
-$result = $stmt->get_result();
-$match = $result->fetch_row()[0];
-$stmt->close();
-
-if(!$match) {
+if(!isset($_SESSION["username"])) {
     header('location:../index.php');
     die();
 }
-
-$conn->close();
 
 echo "Session username is " . $_SESSION["username"];
 ?>

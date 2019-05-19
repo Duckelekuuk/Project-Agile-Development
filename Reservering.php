@@ -8,6 +8,11 @@ if (empty($_SESSION['csrf']))
 //put session csrf in variable
 $csrf = $_SESSION['csrf'];
 
+if(!isset($_SESSION["username"])) {
+    header('location:../index.php');
+    die();
+}
+
 ?>
 
 <!DOCTYPE html>
