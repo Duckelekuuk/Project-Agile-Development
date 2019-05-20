@@ -3,10 +3,6 @@ session_start();
 if (!isset($_SESSION['csrf'])) {
 	$_SESSION['csrf'] = bin2hex(openssl_random_pseudo_bytes(32));
 }
-if(isset($_SESSION["username"])) {
-    header('location:src/afterlogin.php');
-    die();
-}
 ?>
 
 <!DOCTYPE html>

@@ -1,9 +1,3 @@
-<?php
-if(!isset($_SESSION["username"])) {
-    header('location:../index.php');
-    die();
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -151,7 +145,7 @@ if(!isset($_SESSION["username"])) {
                         <div class="card-img-overlay">
                             <h5 class="card-title">Parkeerplaats Noord</h5>
                             <p class="card-text">Aantal plekken vrij: 4</p>
-                            <button type="button" class="btn btn-blue navbar-btn" data-toggle="modal" data-target="#Reserveer">Reserveer
+                            <button onclick="location.href='Reservering.php'" type="button" class="btn btn-blue navbar-btn" data-toggle="modal" data-target="#Reserveer">Reserveer
                             </button>
                         </div>
                     </div>
