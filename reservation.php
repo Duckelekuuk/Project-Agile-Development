@@ -1,11 +1,10 @@
 <?php
 session_start();
 
-$csrf = $_SESSION['csrf'];
-
 //create a key for hash_hmac function
-if (empty($_SESSION['csrf']))
+if (!isset($_SESSION['csrf'])){
     $_SESSION['csrf'] = bin2hex(openssl_random_pseudo_bytes(32));
+}
 
 ?>
 
@@ -188,7 +187,7 @@ if (empty($_SESSION['csrf']))
                             </div>
                         </div>
                         <input name="submit" type="submit" class="btn btn-blue" value="Reserveer!">
-                        <input type="hidden" name="csrf" value="<?php echo $csrf ?>">
+                        <input type="hidden" name="csrf" value=<?php echo('"'. $_SESSION['csrf'] . '"');?>>
                     </form>
                 </div>
                 <script type="text/javascript">

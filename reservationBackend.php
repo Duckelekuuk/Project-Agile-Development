@@ -7,13 +7,13 @@ $password = "usbw";
 $dbname = "mol";
 
 
-//if(isset($_POST['submit']) && ($_POST['Van']) && !isset($_POST['Tot']) && !isset($_POST['csrf'])) {
-//    die("Incomplete parameters");
-//}
-///validate token
-//f($_POST['csrf'] != $_SESSION['csrf']) {
-//    die("Invalid CSRF token.");
-//}
+if(!isset($_POST['submit']) || !isset($_POST['Van']) || !isset($_POST['Tot']) || !isset($_POST['csrf'])) {
+    die("Incomplete parameters");
+}
+//validate token
+if($_POST['csrf'] != $_SESSION['csrf']) {
+    die("Invalid CSRF token.");
+}
 
 
 // Create connection
