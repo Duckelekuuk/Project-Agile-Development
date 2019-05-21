@@ -126,7 +126,7 @@ if (!isset($_SESSION['csrf'])){
 
                 <li class="button-holder">
 
-                    <button type="button" class="btn btn-blue navbar-btn" data-toggle="modal" data-target="#SignIn">Sign
+                    <button onclick="location.href='logout.php'" type="button" class="btn btn-blue navbar-btn" data-toggle="modal" data-target="#SignIn">Sign
                         out
                     </button>
 

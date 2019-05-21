@@ -100,7 +100,7 @@
 
                 <li class="button-holder">
 
-                    <button type="button" class="btn btn-blue navbar-btn" data-toggle="modal" data-target="#SignIn">Sign
+                    <button onclick="location.href='logout.php'" type="button" class="btn btn-blue navbar-btn" data-toggle="modal" data-target="#SignIn">Sign
                         out
                     </button>
 
@@ -142,7 +142,7 @@
                         <div class="card-img-overlay">
                             <h5 class="card-title">Parkeerplaats Noord</h5>
                             <p class="card-text">Aantal plekken vrij: 4</p>
-                            <button onclick="location.href='reservationFrontend.php'" type="button" class="btn btn-blue navbar-btn" data-toggle="modal" data-target="#Reserveer">Reserveer
+                            <button onclick="location.href='reservation.php'" type="button" class="btn btn-blue navbar-btn" data-toggle="modal" data-target="#Reserveer">Reserveer
                             </button>
                         </div>
                     </div>
