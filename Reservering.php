@@ -1,17 +1,11 @@
 <?php
 session_start();
 
+$csrf = $_SESSION['csrf'];
+
 //create a key for hash_hmac function
 if (empty($_SESSION['csrf']))
     $_SESSION['csrf'] = bin2hex(openssl_random_pseudo_bytes(32));
-
-//put session csrf in variable
-$csrf = $_SESSION['csrf'];
-
-if(!isset($_SESSION["username"])) {
-    header('location:../index.php');
-    die();
-}
 
 ?>
 
@@ -172,16 +166,6 @@ if(!isset($_SESSION["username"])) {
             <div class="col-md-6 caption">
 
                 <h1>eParking</h1>
-
-                <h2>
-
-                    Ik ben
-
-                    <span class="animated-text"></span>
-
-                    <span class="typed-cursor"></span>
-
-                </h2>
 
                 <p><b>Heeft u problemen met een parkeerplek vinden waar u ook kunt opladen? Weer rondjes rijden tot er
                         een plek vrij is? Ver geparkeerd staan omdat alle oplaad plekken bezet zijn? Vanaf nu niet meer
