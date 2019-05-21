@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -100,7 +103,8 @@
 
                 <li class="button-holder">
 
-                    <button onclick="location.href='logout.php'" type="button" class="btn btn-blue navbar-btn" data-toggle="modal" data-target="#SignIn">Sign
+                    <button onclick="location.href='logout.php'" type="button" class="btn btn-blue navbar-btn"
+                            data-toggle="modal" data-target="#SignIn">Sign
                         out
                     </button>
 
@@ -137,12 +141,49 @@
                 <div class="story-content" style="color: #000000; padding-left: 150px; padding-top: 50px;">
                     <h2>Welkom bij eParking, kies de gewenste locatie en reserveer uw oplaadpunt</h2>
                     <br>
-                    <div class="card bg-warning " style="color: #000; max-width: 49rem; padding-left: 20px; padding-top: 20px; padding-bottom: 20px; border-radius: 25px">
-                        <img class="card-img" src="assets/img/PR-Station-noord.jpg" alt="Card image" style="max-width: 450px; border-radius: 10px;">
+                    <div class="card bg-warning "
+                         style="color: #000; max-width: 49rem; padding-left: 20px; padding-top: 20px; padding-bottom: 20px; border-radius: 25px">
+                        <h5>Laatste 10 reserveringen</h5>
+                        <?php
+                        $servername = "localhost:3307";
+                        $username = "root";
+                        $password = "usbw";
+                        $dbname = "mol";
+
+                        $conn = new mysqli($servername, $username, $password, $dbname);
+                        // Check connection
+                        if ($conn->connect_error) {
+                            die("Connection failed: " . $conn->connect_error);
+                        }
+
+                        $stmt = $conn->prepare("SELECT Van, Tot FROM reserveringen WHERE Kenteken = ?");
+                        $stmt->bind_param("s", $_SESSION['kenteken']);
+                        $stmt->execute();
+
+                        $result = $stmt->get_result();
+
+                        if($result->num_rows > 0) {
+                            echo "<table>";
+                            while ($row = $result->fetch_assoc()) {
+                                echo "<tr><td>" . $row["Van"] . " -</td><td>- " . $row["Tot"] . "</td></tr>";
+                            }
+                            echo "</table>";
+                        }
+                        ?>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-78">
+                <div class="story-content" style="color: #000000; padding-left: 150px; padding-top: 50px;">
+                    <div class="card bg-warning "
+                         style="color: #000; max-width: 49rem; padding-left: 20px; padding-top: 20px; padding-bottom: 20px; border-radius: 25px">
+                        <img class="card-img" src="assets/img/PR-Station-noord.jpg" alt="Card image"
+                             style="max-width: 450px; border-radius: 10px;">
                         <div class="card-img-overlay">
                             <h5 class="card-title">Parkeerplaats Noord</h5>
-                            <p class="card-text">Aantal plekken vrij: 4</p>
-                            <button onclick="location.href='reservation.php'" type="button" class="btn btn-blue navbar-btn" data-toggle="modal" data-target="#Reserveer">Reserveer
+                            <button onclick="location.href='reservation.php'" type="button"
+                                    class="btn btn-blue navbar-btn" data-toggle="modal" data-target="#Reserveer">
+                                Reserveer
                             </button>
                         </div>
                     </div>
