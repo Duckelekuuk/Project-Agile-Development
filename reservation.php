@@ -125,16 +125,6 @@ if (empty($_SESSION['csrf']))
 
             <ul class="nav navbar-nav navbar-right">
 
-                <li class="active scroll"><a href="#home">Reserveren</a></li>
-
-                <li class="scroll"><a href="#about">About</a></li>
-
-                <li class="scroll"><a href="#services">Services</a></li>
-
-                <li class="scroll"><a href="#contact">Contact</a></li>
-
-                <li class="scroll"><a href="faq.html">Faq</a></li>
-
                 <li class="button-holder">
 
                     <button type="button" class="btn btn-blue navbar-btn" data-toggle="modal" data-target="#SignIn">Sign
