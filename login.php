@@ -36,25 +36,20 @@ $passwordWithSalt = $passwordSalt . $_POST['password'];
 $passwordHash = hash('sha256', $passwordWithSalt);
 
 
-$stmt = $conn->prepare("SELECT COUNT(*) FROM klant WHERE Gebruikersnaam = ? AND Wachtwoord = ?");
+$stmt = $conn->prepare("SELECT kenteken FROM klant WHERE Gebruikersnaam = ? AND Wachtwoord = ?");
 $stmt->bind_param("ss", $_POST['username'], $passwordHash);
 $stmt->execute();
 
 $result = $stmt->get_result();
-$match = $result->fetch_row()[0];
+$kenteken = $result->fetch_row()[0];
 $stmt->close();
 
-if(!$match) {
+if(empty($kenteken)) {
 	$conn->close();
     die("Invalid credentials.");
 }
 
-echo 'Login success.';
-
-$filledInUsername = $_POST['username'];
-$_SESSION["username"] = $filledInUsername;
-
-echo "Session username is " . $_SESSION["username"];
+$_SESSION["kenteken"] = $kenteken;
 
 header('location:loginHome.php');
 
