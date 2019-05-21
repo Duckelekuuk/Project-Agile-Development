@@ -172,7 +172,7 @@ if (empty($_SESSION['csrf']))
                         met eParking!</b></p>
 
                 <div class="centered" id="centered" style="align-content: center">
-                    <form class="datum-tijd" action="/Reserveren.php" method="POST">
+                    <form class="datum-tijd" action="/reservationBackend.php" method="POST">
                         <h2 class="text-center">Kies een datum en tijd</h2>
                         <hr>
                         <div class='col-md-5'>

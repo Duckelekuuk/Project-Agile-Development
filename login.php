@@ -56,7 +56,7 @@ $_SESSION["username"] = $filledInUsername;
 
 echo "Session username is " . $_SESSION["username"];
 
-header('location:loginhome.php');
+header('location:loginHome.php');
 
 $conn->close();
 ?>
