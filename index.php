@@ -362,8 +362,6 @@ if (!isset($_SESSION['csrf'])) {
 
                         </div>
 
-                        <a href="#" class="btn btn-white">Lees meer</a>
-
                     </div>
 
                 </div>

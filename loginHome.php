@@ -143,7 +143,7 @@ session_start();
                     <br>
                     <div class="card bg-warning "
                          style="color: #000; max-width: 49rem; padding-left: 20px; padding-top: 20px; padding-bottom: 20px; border-radius: 25px">
-                        <h5>Laatste 10 reserveringen</h5>
+                        <h5>Laatste reserveringen</h5>
                         <?php
                         $servername = "localhost:3307";
                         $username = "root";
@@ -156,7 +156,7 @@ session_start();
                             die("Connection failed: " . $conn->connect_error);
                         }
 
-                        $stmt = $conn->prepare("SELECT Van, Tot FROM reserveringen WHERE Kenteken = ?");
+                        $stmt = $conn->prepare("SELECT Van, Tot FROM reserveringen WHERE Kenteken = ? ORDER BY Van");
                         $stmt->bind_param("s", $_SESSION['kenteken']);
                         $stmt->execute();
 
