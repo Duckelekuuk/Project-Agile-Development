@@ -36,7 +36,6 @@ if(isset($_POST['submit']) && ($_POST['Van']) && !isset($_POST['Tot']) && !isset
     // If insert successful
     if ($insert) {
         $status = 'Event data inserted successfully. Event ID: ' . $db->insert_id;
-
     } else {
         $status = 'Failed to insert event data.';
 
