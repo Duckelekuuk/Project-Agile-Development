@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-$servername = "localhost:3307";
-$username = "root";
-$password = "usbw";
+$servername = "172.17.0.6:3306";
+$username = "molu";
+$password = "molp";
 $dbname = "mol";
 
 

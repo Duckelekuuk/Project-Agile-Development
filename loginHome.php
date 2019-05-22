@@ -145,9 +145,9 @@ session_start();
                          style="color: #000; max-width: 49rem; padding-left: 20px; padding-top: 20px; padding-bottom: 20px; border-radius: 25px">
                         <h5>Laatste reserveringen</h5>
                         <?php
-                        $servername = "localhost:3307";
-                        $username = "root";
-                        $password = "usbw";
+                        $servername = "172.17.0.6:3306";
+                        $username = "molu";
+                        $password = "molp";
                         $dbname = "mol";
 
                         $conn = new mysqli($servername, $username, $password, $dbname);
