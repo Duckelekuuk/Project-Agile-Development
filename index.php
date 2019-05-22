@@ -1,7 +1,7 @@
 <?php
 session_start();
-if(!empty($_SESSION["username"])) {
-    header('location:src/afterlogin.php');
+if (!isset($_SESSION['csrf'])) {
+	$_SESSION['csrf'] = bin2hex(openssl_random_pseudo_bytes(32));
 }
 ?>
 
@@ -229,6 +229,13 @@ if(!empty($_SESSION["username"])) {
 
                         </div>
 
+                        <div class="form-group">
+
+                            <input name="registerPassword2" type="password" class="form-control" placeholder="Password" required="required" minlength="8">
+                            <input type="hidden" name="csrf" value=<?php echo '"'. $_SESSION['csrf'] . '"';?>>
+
+                        </div>
+
                         <div class="form-group text-center">
 
                             <button type="submit" class="btn btn-blue btn-block">Registreer</button>
@@ -355,8 +362,6 @@ if(!empty($_SESSION["username"])) {
 
                         </div>
 
-                        <a href="#" class="btn btn-white">Lees meer</a>
-
                     </div>
 
                 </div>
@@ -393,9 +398,9 @@ if(!empty($_SESSION["username"])) {
 
                         <i class="material-icons">thumb_up</i>
 
-                        <h4>Great Quality</h4>
+                        <h4>Zekerheid</h4>
 
-                        <p>Quality ipsum dolor sit amet, consectetur adipisicing elit. Beatae quod error quis.</p>
+                        <p>Altijd zeker zijn van een laadpaal!</p>
 
                     </div>
 
@@ -407,9 +412,9 @@ if(!empty($_SESSION["username"])) {
 
                         <i class="material-icons">euro_symbol</i>
 
-                        <h4>Best Price</h4>
+                        <h4>Geen Kosten</h4>
 
-                        <p>Price ipsum dolor sit amet, consectetur adipisicing elit. Beatae quod error quis.</p>
+                        <p>Het reserveren van een parkeerplek is helemaal gratis!</p>
 
                     </div>
 
@@ -421,9 +426,9 @@ if(!empty($_SESSION["username"])) {
 
                         <i class="material-icons">forum</i>
 
-                        <h4>24/7 Support</h4>
+                        <h4>24/7 Bereikbaar</h4>
 
-                        <p>Support ipsum dolor sit amet, consectetur adipisicing elit. Beatae quod error quis.</p>
+                        <p>De app kunt u 24/7 gebruiken zolang de parkeerplaats open is!</p>
 
                     </div>
 
@@ -435,9 +440,9 @@ if(!empty($_SESSION["username"])) {
 
                         <i class="material-icons">view_carousel</i>
 
-                        <h4>UX/UI Design</h4>
+                        <h4>Geen Last</h4>
 
-                        <p>Quality ipsum dolor sit amet, consectetur adipisicing elit. Beatae quod error quis.</p>
+                        <p>Nooit meer mensen die de laadpaal zonder reden bezetten!</p>
 
                     </div>
 
@@ -530,6 +535,7 @@ if(!empty($_SESSION["username"])) {
                         <div class="form-group">
 
                             <input name="password" type="password" class="form-control" placeholder="Password" required="required">
+                            <input type="hidden" name="csrf" value=<?php echo '"'. $_SESSION['csrf'] . '"';?>>
 
                         </div>
 
