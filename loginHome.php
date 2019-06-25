@@ -145,10 +145,7 @@ session_start();
                          style="color: #000; max-width: 49rem; padding-left: 20px; padding-top: 20px; padding-bottom: 20px; border-radius: 25px">
                         <h5>Laatste reserveringen</h5>
                         <?php
-                        $servername = "localhost:3307";
-                        $username = "root";
-                        $password = "usbw";
-                        $dbname = "mol";
+                        include 'dbvar.php';
 
                         $conn = new mysqli($servername, $username, $password, $dbname);
                         // Check connection
@@ -156,7 +153,7 @@ session_start();
                             die("Connection failed: " . $conn->connect_error);
                         }
 
-                        $stmt = $conn->prepare("SELECT Van, Tot FROM reserveringen WHERE Kenteken = ? ORDER BY Van");
+                        $stmt = $conn->prepare("SELECT Van, Tot FROM reserveringen WHERE Kenteken = ? ORDER BY Van DESC");
                         $stmt->bind_param("s", $_SESSION['kenteken']);
                         $stmt->execute();
 

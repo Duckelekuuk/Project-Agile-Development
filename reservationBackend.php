@@ -1,11 +1,7 @@
 <?php
 session_start();
 
-$servername = "localhost:3307";
-$username = "root";
-$password = "usbw";
-$dbname = "mol";
-
+include 'dbvar.php';
 
 if(!isset($_POST['submit']) || !isset($_POST['Van']) || !isset($_POST['Tot']) || !isset($_POST['csrf'])) {
     die("Incomplete parameters");
@@ -39,7 +35,7 @@ $stmt->close();
 
 if(empty($plaats)) {
     $conn->close();
-    die("No spot availible during this time-frame.");
+    die("No spot available during this time-frame.");
 }
 
 // Get fields value
@@ -48,4 +44,4 @@ if(empty($plaats)) {
     $stmt->execute();
     $stmt->close();
 
-echo("Reserved.");
+header('location:loginHome.php');

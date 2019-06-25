@@ -1,9 +1,6 @@
 <?php
 session_start();
-$servername = "localhost:3307";
-$username = "root";
-$password = "usbw";
-$dbname = "mol";
+include 'dbvar.php';
 
 if(!isset($_POST['username']) || !isset($_POST['password']) || !isset($_POST['csrf'])) {
     die("Incomplete parameters");

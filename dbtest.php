@@ -1,8 +1,5 @@
 <?php
-$servername = "localhost:3307";
-$username = "root";
-$password = "usbw";
-$dbname = "mol";
+include 'dbvar.php';
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
